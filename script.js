@@ -251,7 +251,7 @@
     els.answerDisplay.classList.toggle("is-correct", correct);
     els.answerDisplay.classList.toggle("is-wrong", !correct);
     playSound(correct);
-    window.setTimeout(generateProblem, 1000);
+    window.setTimeout(generateProblem, correct ? 1000 : 3000);
   }
 
   function handleDigit(digit) {
@@ -359,13 +359,17 @@
     const attempts = getRecentAttempts(a, b);
     if (!attempts.length) return null;
     const correct = attempts.filter(Boolean).length;
-    return Math.round((correct / 5) * 100);
+    return Math.round((correct / attempts.length) * 100);
   }
 
   function accuracyClass(a, b) {
     const rate = getRecentAccuracy(a, b);
     if (rate === null) return "acc-empty";
-    return `acc-${rate}`;
+    if (rate === 0) return "acc-0";
+    if (rate <= 25) return "acc-25";
+    if (rate <= 50) return "acc-50";
+    if (rate < 100) return "acc-75";
+    return "acc-100";
   }
 
   function renderMiniTable() {

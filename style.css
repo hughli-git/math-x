@@ -296,17 +296,17 @@ input[type="number"] {
   min-width: clamp(1.25em, 18vw, 1.9em);
   min-height: 1.08em;
   padding: 0 0.18em;
-  border: 0.075em solid rgba(239, 123, 0, 0.48);
+  border: 0.075em solid rgba(148, 163, 184, 0.45);
   border-radius: 0.18em;
-  background: #fffaf0;
-  color: #ef7b00;
-  box-shadow: inset 0 -0.08em 0 rgba(239, 123, 0, 0.12);
+  background: #f8fafc;
+  color: #94a3b8;
+  box-shadow: inset 0 -0.08em 0 rgba(148, 163, 184, 0.12);
   vertical-align: baseline;
 }
 
 .answer-display:empty::after {
   content: "?";
-  color: rgba(239, 123, 0, 0.38);
+  color: #cbd5e1;
 }
 
 .answer-display.is-correct {
@@ -417,23 +417,20 @@ input[type="number"] {
 }
 
 .acc-0 {
-  background: #ff8a8a;
+  background: #ff2d2d;
+  color: #ffffff;
 }
 
-.acc-20 {
-  background: #ffb067;
+.acc-25 {
+  background: #ff8a3d;
 }
 
-.acc-40 {
-  background: #ffd86b;
+.acc-50 {
+  background: #ffd43b;
 }
 
-.acc-60 {
-  background: #c8e96d;
-}
-
-.acc-80 {
-  background: #7fe19b;
+.acc-75 {
+  background: #38bdf8;
 }
 
 .acc-100 {
