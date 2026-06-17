@@ -191,7 +191,7 @@
 
   function getProblemWeight(a, b) {
     const rate = getRecentAccuracy(a, b);
-    if (rate === null) return 4;
+    if (rate === null) return 7;
     if (rate === 0) return 6;
     if (rate <= 25) return 5;
     if (rate <= 50) return 4;
@@ -394,9 +394,10 @@
     const rate = getRecentAccuracy(a, b);
     if (rate === null) return "acc-empty";
     if (rate === 0) return "acc-0";
-    if (rate <= 25) return "acc-25";
-    if (rate <= 50) return "acc-50";
-    if (rate < 100) return "acc-75";
+    if (rate <= 20) return "acc-20";
+    if (rate <= 40) return "acc-40";
+    if (rate <= 60) return "acc-60";
+    if (rate < 100) return "acc-80";
     return "acc-100";
   }
 
