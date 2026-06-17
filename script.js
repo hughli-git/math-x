@@ -189,6 +189,34 @@
     els.answerDisplay.textContent = state.current.input;
   }
 
+  function getProblemWeight(a, b) {
+    const rate = getRecentAccuracy(a, b);
+    if (rate === null) return 4;
+    if (rate === 0) return 6;
+    if (rate <= 25) return 5;
+    if (rate <= 50) return 4;
+    if (rate < 100) return 3;
+    return 1;
+  }
+
+  function chooseWeightedPair(pairs) {
+    const weightedPairs = pairs.map(([a, b]) => ({
+      a,
+      b,
+      weight: getProblemWeight(a, b),
+    }));
+    const totalWeight = weightedPairs.reduce((sum, item) => sum + item.weight, 0);
+    let cursor = Math.random() * totalWeight;
+
+    for (const item of weightedPairs) {
+      cursor -= item.weight;
+      if (cursor <= 0) return [item.a, item.b];
+    }
+
+    const last = weightedPairs[weightedPairs.length - 1];
+    return [last.a, last.b];
+  }
+
   function generateProblem() {
     let pairs = getValidPairs(state.settings);
     if (!pairs.length) {
@@ -203,7 +231,7 @@
       if (filtered.length) pairs = filtered;
     }
 
-    const [a, b] = pairs[Math.floor(Math.random() * pairs.length)];
+    const [a, b] = chooseWeightedPair(pairs);
     state.current = {
       a,
       b,
